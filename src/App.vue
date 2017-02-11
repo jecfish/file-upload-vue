@@ -5,8 +5,7 @@
       <form enctype="multipart/form-data" novalidate v-if="isInitial || isSaving">
         <h1>Upload images</h1>
         <div class="dropbox">
-          <input type="file" multiple :name="uploadFieldName" :disabled="isSaving" 
-            @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
+          <input type="file" multiple :name="uploadFieldName" :disabled="isSaving" @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
             accept="image/*" class="input-file">
             <p v-if="isInitial">
               Drag your file(s) here to begin<br> or click to browse
@@ -41,10 +40,11 @@
 </template>
 
 <script>
-  import { upload } from './file-upload.service';
+  import { upload } from './file-upload.fake.service'; // fake service
+  // import { upload } from './file-upload.service';   // real service
+  import { wait } from './utils';
 
   const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
-  const BASE_URL = 'http://localhost:3001';
 
   export default {
     name: 'app',
@@ -76,8 +76,9 @@
         // upload data to the server
         this.currentStatus = STATUS_SAVING;
         const url = `${BASE_URL}/photos/upload`;
-        
+
         upload(formData)
+          .then(wait(1500)) // DEV ONLY: wait for 1.5s 
           .then(x => {
             this.uploadedFiles = [].concat(x);
             this.currentStatus = STATUS_SUCCESS;
