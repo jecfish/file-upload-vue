@@ -40,6 +40,7 @@
 </template>
 
 <script>
+  // swap as you need
   import { upload } from './file-upload.fake.service'; // fake service
   // import { upload } from './file-upload.service';   // real service
   import { wait } from './utils';
@@ -120,21 +121,18 @@
 
 <style lang="scss">
   .dropbox {
-    outline: 2px dashed grey;
-    /* the dash box */
+    outline: 2px dashed grey; /* the dash box */
     outline-offset: -10px;
     background: lightcyan;
     color: dimgray;
     padding: 10px 10px;
-    min-height: 200px;
-    /* minimum height */
+    min-height: 200px; /* minimum height */
     position: relative;
     cursor: pointer;
   }
   
   .input-file {
-    opacity: 0;
-    /* invisible but it's there! */
+    opacity: 0; /* invisible but it's there! */
     width: 100%;
     height: 200px;
     position: absolute;
@@ -142,8 +140,7 @@
   }
   
   .dropbox:hover {
-    background: lightblue;
-    /* when mouse over to the drop zone, change color */
+    background: lightblue; /* when mouse over to the drop zone, change color */
   }
   
   .dropbox p {
