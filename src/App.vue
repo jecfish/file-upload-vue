@@ -49,8 +49,13 @@
 
   export default {
     name: 'app',
-    mounted() {
-      this.reset();
+    data() {
+      return {
+        uploadedFiles: [],
+        uploadError: null,
+        currentStatus: null,
+        uploadFieldName: 'photos'
+      }
     },
     computed: {
       isInitial() {
@@ -90,7 +95,6 @@
           });
       },
       filesChange(fieldName, fileList) {
-        console.log(fieldName, fileList)
         // handle file changes
         const formData = new FormData();
 
@@ -107,14 +111,9 @@
         this.save(formData);
       }
     },
-    data() {
-      return {
-        uploadedFiles: [],
-        uploadError: null,
-        currentStatus: null,
-        uploadFieldName: 'photos'
-      }
-    }
+    mounted() {
+      this.reset();
+    },
   }
 
 </script>
