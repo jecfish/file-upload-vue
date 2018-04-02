@@ -31,9 +31,7 @@ function getBase64Image(img) {
 
     const ctx = canvas.getContext('2d');
     ctx.drawImage(img, 0, 0);
-
-    const dataURL = canvas.toDataURL('image/png');
-
+    const dataURL = img.src;
     return dataURL;
 }
 

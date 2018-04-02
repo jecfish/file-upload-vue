@@ -81,7 +81,6 @@
       save(formData) {
         // upload data to the server
         this.currentStatus = STATUS_SAVING;
-        const url = `${BASE_URL}/photos/upload`;
 
         upload(formData)
           .then(wait(1500)) // DEV ONLY: wait for 1.5s 
